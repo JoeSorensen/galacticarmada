@@ -2,36 +2,32 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>hello phaser!</title>
+        <title>Galactic Armada</title>
         <script src=https://cdn.jsdelivr.net/phaser/2.6.2/phaser.js></script>
     </head>
     <body>
 
     <script type="text/javascript">
     console.log.apply("GALACTIC ARMADA | CODE: JOSEPH SORENSEN GRAPHICS: WILLIAM BURG | Enjoy your stay.");
-    window.onload = function() {
+    var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
-        //  Note that this html file is set to pull down Phaser 2.5.0 from the JS Delivr CDN.
-        //  Although it will work fine with this tutorial, it's almost certainly not the most current version.
-        //  Be sure to replace it with an updated version before you start experimenting with adding your own code.
+    function preload() {
 
-        var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
+      game.load.image('sky', 'graphics/sky.png');
+      game.load.image('ground', 'graphics/platform.png');
+      game.load.image('star', 'graphics/star.png');
+      game.load.spritesheet('dude', 'graphics/dude.png', 32, 48);
 
-        function preload () {
+    }
 
-            game.load.image('logo', 'graphics/phaser.png');
+    function create() {
 
-        }
+      game.add.sprite(0, 0, 'star')
 
-        function create () {
+    }
 
-            var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
-            logo.anchor.setTo(0.5, 0.5);
-
-        }
-
-    };
-
+    function update() {
+    }
     </script>
 
     </body>
