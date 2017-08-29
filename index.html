@@ -8,11 +8,11 @@
     <body>
 
     <script type="text/javascript">
-    console.log.apply("GALACTIC ARMADA | CODE: JOSEPH SORENSEN GRAPHICS: WILLIAM BURG | Enjoy your stay.");
     var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
     function preload() {
 
+      console.log.apply("GALACTIC ARMADA | CODE: JOSEPH SORENSEN GRAPHICS: WILLIAM BURG | Enjoy your stay.");
       game.load.image('sky', 'graphics/sky.png');
       game.load.image('ground', 'graphics/platform.png');
       game.load.image('star', 'graphics/star.png');
