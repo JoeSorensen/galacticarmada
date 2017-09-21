@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<!-- Galactic Armada; Official game written for a school project by Joseph Sorensen -->
+
+<html>
+
+<head>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.js"></script>
+<meta charset="UTF-8">
+<title>Galactic Armada by Joseph Sorensen</title>
+</head>
+
+<body>
+	<p>This game is in early development stages, which means that glitches and bugs are imminent.</p>
+	<p>How fun, this is a game of run away from your evil shadow. =D</p>
+	<h1>INSTRUCTIONS</h1>
+	<p>You can move your avatar (the ship with the blue nose cone) Using the following keybinds:</p>
+	<p>W = move up</p>
+	<p>A = move down</p>
+	<p>S = move left</p>
+	<p>D  = move right</p>
+	<p>The number you see below is the AI indicator. Every once in a while, the indicator will flash to 1. That means the enemy is gonna teleport to your location.</p>
+	<p>That's about it, have fun!</p>
+	<p>AI INDICATOR</p>
+  <p id="Wow, you are digging through the code.">0</p>
+	<p id="Is it impossible to keep secrets nowadays?">1</p>
+	<p id="I guess it is.">0</p>
+	<p>I would pay attention to this number if I were you.</p>
+	<p id="Just, lets keep all of this in between us.">time = 0</p>
+	<script>
+	  //Coordanites are boring.
+		var SSx = 0;
+    var SSy = 0;
+		var ESSx = window.innerWidth-200;
+		var ESSy = window.innerHeight-200;
+    var Sx = 0;
+    var Sy = 0;
+    var x=0;
+    var y=0;
+		var ASx=0;
+		var ASy=0;
+		var ASArrayx = [];
+		var ASArrayy = [];
+		//I LOVE RANDOMNESS
+    var randomint=0;
+    var randomintt=0;
+    var Arandomint=0;
+    var Arandomintt=0;
+    var ASrandomint=0;
+		//THE MAGICAL ARRAYS OF MAGICALNESS =P
+		//Asteroids
+    var AArrayx = [];
+    var AArrayy = [];
+		var ASArrayx = [];
+		var ASArrayy = [];
+		//Magical Stars =D
+    var SArrayx = [];
+    var SArrayy = [];
+		//END ARRAYS (NUUUUUUUUUUUUU) D=
+    var AArrayLister = 0;
+    var SArrayLister = 0;
+		var difficulty = 100;
+		var increase = 0.001;
+		var time = 0
+    var canvas;
+
+    function setup() {
+			//Dis is complicated!!!!!!
+      canvas = createCanvas(window.innerWidth-100, window.innerHeight-100)
+      background('black');
+			//make me 500 stars. NOW!
+      for (i=0; i < 500; i++){
+        fill('white')
+        randomint = Math.floor(Math.random() * (window.innerWidth-100 + 1) + 0);
+        randomintt = Math.floor(Math.random() * (window.innerHeight-100 + 1) + 0);
+        ellipse(Sx, Sy, 10, 10);
+        Sx = randomint;
+        Sy = randomintt;
+        SArrayx[SArrayLister] = Sx;
+        SArrayy[SArrayLister] = Sy;
+        SArrayLister += 1;
+      }
+			//ASTEROIDS! NOWWWW!!!!
+      AsteroidAI();
+    }
+
+    function draw(){
+      background('black');
+      SArrayLister = 0;
+      AArrayLister = 0;
+			if (keyIsDown(66)){
+				for (i=0; i < 500; i++){
+					var randomcolorparty = Math.floor(Math.random() * (5 + 1) + 0);
+					if (randomcolorparty == 1) {
+						fill('white');
+					}else if (randomcolorparty == 2) {
+						fill('blue');
+					}else if (randomcolorparty == 3) {
+						fill('red')
+					}else if (randomcolorparty == 4) {
+						fill('green')
+					}else if (randomcolorparty == 5) {
+						fill(255, 204, 0);
+					};
+	        randomint = Math.floor(Math.random() * (window.innerWidth-100 + 1) + 0);
+	        randomintt = Math.floor(Math.random() * (window.innerHeight-100 + 1) + 0);
+	        ellipse(Sx, Sy, 10, 10);
+	        Sx = randomint;
+	        Sy = randomintt;
+	        SArrayx[SArrayLister] = Sx;
+	        SArrayy[SArrayLister] = Sy;
+	        SArrayLister += 1;
+	      }
+			}else{
+				for (i=0; i < 500; i++){
+	        fill('white');
+	        ellipse(SArrayx[SArrayLister], SArrayy[SArrayLister], 10, 10);
+	        SArrayLister += 1;
+	      }
+			}
+      starshipMain();
+			starshipEnemy();
+			if (keyIsDown(86)){
+				AArrayLister = 0;
+	      for (i=0; i < 20; i++){
+	        Arandomint = Math.floor(Math.random() * (window.innerWidth-100 + 1) + 0);
+	        Arandomintt = Math.floor(Math.random() * (window.innerHeight-100 + 1) + 0);
+	        ASrandomint = Math.floor(Math.random() * (50 + 100) + 0);
+	        fill('brown');
+	        ellipse(x, y, ASx, ASy);
+	        x = Arandomint;
+	        y = Arandomintt;
+	        ASx = ASrandomint;
+	        ASy = ASrandomint;
+	        AArrayx[AArrayLister] = x;
+	        AArrayy[AArrayLister] = y;
+	        ASArrayx[AArrayLister] = ASx;
+	        ASArrayy[AArrayLister] = ASy;
+	        AArrayLister += 1;
+	      }
+			}else{
+        AsertoidMaintainer();
+			}
+			//AsteroidAI();
+			ellipse(AArrayx[0], AArrayy[0], ASArrayx[0], ASArrayy[0])
+      //This line is used for debugging
+      //alert(AArrayx)
+      AArrayLister = 0;
+			//CONTROL STUFF
+      if(SSx<-70){
+        SSx=window.innerWidth-90;
+      }
+      if(SSx>window.innerWidth-90){
+        SSx=-70;
+      }
+      if(SSy<-10){
+        SSy=window.innerHeight-90;
+      }
+      if(SSy>window.innerHeight-90){
+        SSy=-10;
+      }
+			document.getElementById('Just, lets keep all of this in between us.').innerHTML = "time = " + time;
+			if (time > 10){
+				document.getElementById('Just, lets keep all of this in between us.').innerHTML = "YOU LOSE! Reload the page to try again!";
+			}else if (difficulty <= 0 && time < 10){
+				document.getElementById('Just, lets keep all of this in between us.').innerHTML = "GG! You win!"
+			}else{
+				if (SSx == ESSx && SSy == ESSy && time < 10){
+					time += 0.2;
+					if(keyIsDown(83)){
+						SSy+= 2;
+					};
+					if(keyIsDown(87)){
+						SSy-= 2;
+					};
+					if(keyIsDown(65)){
+						SSx-= 2;
+					};
+					if(keyIsDown(68)){
+						SSx+= 2;
+					};
+				}else{
+					if (time < 10) {
+						  if (time > 0) {
+								time -= 0.01;
+								if(keyIsDown(83)){
+									SSy+= 2;
+								};
+								if(keyIsDown(87)){
+									SSy-= 2;
+								};
+								if(keyIsDown(65)){
+									SSx-= 2;
+								};
+								if(keyIsDown(68)){
+									SSx+= 2;
+								};
+								if (time > 0 && time < 1){
+									time= 0;
+								}
+							}
+						}
+					}
+					if (time == 0){
+						if(keyIsDown(83)){
+							SSy+= 2;
+						};
+						if(keyIsDown(87)){
+							SSy-= 2;
+						};
+						if(keyIsDown(65)){
+							SSx-= 2;
+						};
+						if(keyIsDown(68)){
+							SSx+= 2;
+						};
+					}
+				}
+			}
+
+    function AsteroidAI(){
+      //This AI is responsible of generating 20 "asteroids" when called, all in random sizes and positions. However, they are not solid. Coming soon!
+      AArrayLister = 0;
+      for (i=0; i < 20; i++){
+        Arandomint = Math.floor(Math.random() * (window.innerWidth-100 + 1) + 0);
+        Arandomintt = Math.floor(Math.random() * (window.innerHeight-100 + 1) + 0);
+        ASrandomint = Math.floor(Math.random() * (50 + 100) + 0);
+        fill('brown');
+        ellipse(x, y, ASx, ASy);
+        x = Arandomint;
+        y = Arandomintt;
+        ASx = ASrandomint;
+        ASy = ASrandomint;
+        AArrayx[AArrayLister] = x;
+        AArrayy[AArrayLister] = y;
+        ASArrayx[AArrayLister] = ASx;
+        ASArrayy[AArrayLister] = ASy;
+        AArrayLister += 1;
+      }
+    }
+
+		function AsertoidMaintainer(){
+			AArrayLister = 0;
+			for (i=0; i < 20; i++){
+        fill('brown');
+        ellipse(x, y, ASx, ASy);
+        x = AArrayx[AArrayLister];
+        y = AArrayy[AArrayLister];
+        ASx = ASArrayx[AArrayLister];
+        ASy = ASArrayy[AArrayLister];
+        AArrayLister += 1;
+      }
+		}
+    // Starship (You)
+    function starshipMain(){
+      fill('darkgrey');
+      rect(SSx, SSy, 50, 15);
+      triangle(SSx+10, SSy+10, SSx+30, SSy+30, SSx+30, SSy+10);
+      triangle(SSx, SSy, SSx, SSy-20, SSx+20, SSy);
+      fill('blue');
+      triangle(SSx+50, SSy+7, SSx+80, SSy+7, SSx+50, SSy);
+      triangle(SSx+50, SSy+7, SSx+80, SSy+7, SSx+50, SSy+15);
+    }
+
+	  function starshipEnemy(){
+			var AI=0;
+		  fill('darkgrey');
+		  rect(ESSx, ESSy, 50, 15);
+		  triangle(ESSx+10, ESSy+10, ESSx+30, ESSy+30, ESSx+30, ESSy+10);
+		  triangle(ESSx, ESSy, ESSx, ESSy-20, ESSx+20, ESSy);
+		  fill('red');
+		  triangle(ESSx+50, ESSy+7, ESSx+80, ESSy+7, ESSx+50, ESSy);
+		  triangle(ESSx+50, ESSy+7, ESSx+80, ESSy+7, ESSx+50, ESSy+15);
+			if (difficulty != 0 && time < 10){
+				AI = Math.floor(Math.random() * (1 + difficulty) + 0);
+				if (AI == 1 || AI == 2 || AI == 3 || AI == 4 || AI ==5){
+					document.getElementById('Wow, you are digging through the code.').innerHTML = AI
+					EnemyAI();
+				}
+				difficulty -= increase;
+				increase += 0.00000555555555;
+				document.getElementById('Wow, you are digging through the code.').innerHTML = AI;
+				document.getElementById('Is it impossible to keep secrets nowadays?').innerHTML = difficulty;
+				document.getElementById('I guess it is.').innerHTML = increase;
+			}
+   }
+
+	 function EnemyAI(){
+		 //Okay, this is kind of a branch out for me, so this might be a bit, well, jumpy.
+		 //Let's start with variables that I'll use for calculations.
+		 //These varables will be used to calculate enemy positions
+		 var AICalcx=ESSx;
+		 var AICalcy=ESSy;
+		 //These variables will be used for getting you current position for calculations
+		 var AICalcPx=SSx;
+		 var AICalcPy=SSy;
+     //First step; update the player coords and enemy coords
+		 //AICalcPx==SSx;
+		 //AICalcPy==SSy
+		 //AICalcx==ESSx;
+		 //AICalcy==ESSy;
+		 //Time for calculations
+		 //Although this is due at the end of the month essentially, I plan to add more advanced moves, like feinting and offensive and defensive. Right now, it'll just teleport. *thumbs up*
+		 AICalcx=SSx;
+		 AICalcy=SSy;
+		 ESSx=AICalcx;
+		 ESSy=AICalcy;
+		 //Let's hope this works!
+	 }
+
+    window.onresize = function() {
+      var w = window.innerWidth-100;
+      var h = window.innerHeight-100;
+      resizeCanvas(w,h);
+      background('black');
+      SArrayLister = 0;
+      for (i=0; i < 500; i++){
+        fill('white')
+        randomint = Math.floor(Math.random() * (window.innerWidth-100 + 1) + 0);
+        randomintt = Math.floor(Math.random() * (window.innerHeight-100 + 1) + 0);
+        ellipse(Sx, Sy, 10, 10);
+        Sx = randomint;
+        Sy = randomintt;
+        SArrayx[SArrayLister] = Sx;
+        SArrayy[SArrayLister] = Sy;
+        SArrayLister += 1;
+      }
+      AsteroidAI();
+    };
+	</script>
+</body>
+</html>
