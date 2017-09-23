@@ -21,6 +21,7 @@
 	<p>D  = move right</p>
 	<p>The number you see below is the AI indicator. Every once in a while, the indicator will flash to 1. That means the enemy is gonna teleport to your location.</p>
 	<p>That's about it, have fun!</p>
+	<button onclick="reset();">Restart</button>
 	<p>AI INDICATOR</p>
   <p id="Wow, you are digging through the code.">0</p>
 	<p id="Is it impossible to keep secrets nowadays?">1</p>
@@ -83,6 +84,16 @@
 			//ASTEROIDS! NOWWWW!!!!
       AsteroidAI();
     }
+
+		function reset(){
+			SSx = 0;
+	    SSy = 0;
+			ESSx = window.innerWidth-200;
+			ESSy = window.innerHeight-200;
+			difficulty = 100;
+			increase = 0.001;
+			time = 0
+		}
 
     function draw(){
       background('black');
@@ -161,7 +172,7 @@
       }
 			document.getElementById('Just, lets keep all of this in between us.').innerHTML = "time = " + time;
 			if (time > 10){
-				document.getElementById('Just, lets keep all of this in between us.').innerHTML = "YOU LOSE! Reload the page to try again!";
+				document.getElementById('Just, lets keep all of this in between us.').innerHTML = "YOU LOSE! Hit Restart to try again!";
 			}else if (difficulty <= 0 && time < 10){
 				document.getElementById('Just, lets keep all of this in between us.').innerHTML = "GG! You win!"
 			}else{
