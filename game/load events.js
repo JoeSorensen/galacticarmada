@@ -1,8 +1,9 @@
-var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create });
 
 function preload() {
 
-    game.load.spritesheet('button', 'game/graphics/buttons/button_sprite_sheet.png', 193, 71);
+    game.load.spritesheet('button', 'assets/buttons/button_sprite_sheet.png', 193, 71);
 
 }
 
@@ -72,9 +73,5 @@ function fileComplete(progress, cacheKey, success, totalLoaded, totalFiles) {
 function loadComplete() {
 
 	text.setText("Load Complete");
-
-}
-
-function update(){
 
 }
