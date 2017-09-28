@@ -24,11 +24,11 @@
 	<p>That's about it, have fun!</p>
 	<button onclick="reset();">Restart</button>
 	<p>AI INDICATOR</p>
-  <p id="Wow, you are digging through the code.">0</p>
-	<p id="Is it impossible to keep secrets nowadays?">1</p>
-	<p id="I guess it is.">0</p>
+  <p id="Wow,-you-are-digging-through-the-code.">0</p>
+	<p id="Is-it-impossible-to-keep-secrets-nowadays?">1</p>
+	<p id="I-guess-it-is.">0</p>
 	<p>I would pay attention to this number if I were you.</p>
-	<p id="Just, lets keep all of this in between us.">time = 0</p>
+	<p id="Just,-lets-keep-all-of-this-in-between-us.">time = 0</p>
 	<script>
 	  //Coordanites are boring.
 		var SSx = 0;
@@ -171,11 +171,11 @@
       if(SSy>window.innerHeight-90){
         SSy=-10;
       }
-			document.getElementById('Just, lets keep all of this in between us.').innerHTML = "time = " + time;
+			document.getElementById('Just,-lets-keep-all-of-this-in-between-us.').innerHTML = "time = " + time;
 			if (time > 10){
-				document.getElementById('Just, lets keep all of this in between us.').innerHTML = "YOU LOSE! Hit Restart to try again!";
+				document.getElementById('Just,-lets-keep-all-of-this-in-between-us.').innerHTML = "YOU LOSE! Hit Restart to try again!";
 			}else if (difficulty <= 0 && time < 10){
-				document.getElementById('Just, lets keep all of this in between us.').innerHTML = "GG! You win!"
+				document.getElementById('Just,-lets-keep-all-of-this-in-between-us.').innerHTML = "GG! You win!"
 			}else{
 				if (SSx == ESSx && SSy == ESSy && time < 10){
 					time += 0.2;
@@ -286,14 +286,14 @@
 			if (difficulty != 0 && time < 10){
 				AI = Math.floor(Math.random() * (1 + difficulty) + 0);
 				if (AI == 1 || AI == 2 || AI == 3 || AI == 4 || AI ==5){
-					document.getElementById('Wow, you are digging through the code.').innerHTML = AI
+					document.getElementById('Wow,-you-are-digging-through-the-code.').innerHTML = AI
 					EnemyAI();
 				}
 				difficulty -= increase;
 				increase += 0.00000555555555;
-				document.getElementById('Wow, you are digging through the code.').innerHTML = AI;
-				document.getElementById('Is it impossible to keep secrets nowadays?').innerHTML = difficulty;
-				document.getElementById('I guess it is.').innerHTML = increase;
+				document.getElementById('Wow,-you-are-digging-through-the-code.').innerHTML = AI;
+				document.getElementById('Is-it-impossible-to-keep-secrets-nowadays?').innerHTML = difficulty;
+				document.getElementById('I-guess-it-is.').innerHTML = increase;
 			}
    }
 
