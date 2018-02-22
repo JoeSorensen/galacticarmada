@@ -171,6 +171,19 @@
       if(SSy>window.innerHeight-90){
         SSy=-10;
       }
+
+	if(ESSx<-70){
+        ESSx=window.innerWidth-90;
+      }
+      if(ESSx>window.innerWidth-90){
+        ESSx=-70;
+      }
+      if(ESSy<-10){
+        ESSy=window.innerHeight-90;
+      }
+      if(ESSy>window.innerHeight-90){
+        ESSy=-10;
+      }
 			document.getElementById('Just,-lets-keep-all-of-this-in-between-us.').innerHTML = "time = " + time;
 			if (time > 10){
 				document.getElementById('Just,-lets-keep-all-of-this-in-between-us.').innerHTML = "YOU LOSE! Hit Restart to try again!";
