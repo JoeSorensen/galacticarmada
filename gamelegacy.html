@@ -313,8 +313,9 @@
 		 //AICalcy==ESSy;
 		 //Time for calculations
 		 //Although this is due at the end of the month essentially, I plan to add more advanced moves, like feinting and offensive and defensive. Right now, it'll just teleport. *thumbs up*
-		 AICalcx=SSx;
-		 AICalcy=SSy;
+		 delay=Math.sin(difficulty/increase)
+		 AICalcx=SSx/delay;
+		 AICalcy=SSy/delay;
 		 ESSx=AICalcx;
 		 ESSy=AICalcy;
 		 //Let's hope this works!
