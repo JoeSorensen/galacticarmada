@@ -284,11 +284,7 @@
 		  triangle(ESSx+50, ESSy+7, ESSx+80, ESSy+7, ESSx+50, ESSy);
 		  triangle(ESSx+50, ESSy+7, ESSx+80, ESSy+7, ESSx+50, ESSy+15);
 			if (difficulty != 0 && time < 10){
-				AI = Math.floor(Math.random() * (1 + difficulty) + 0);
-				if (AI == 1 || AI == 2 || AI == 3 || AI == 4 || AI ==5){
-					document.getElementById('Wow,-you-are-digging-through-the-code.').innerHTML = AI
-					EnemyAI();
-				}
+				EnemyAI();
 				difficulty -= increase;
 				increase += 0.00000555555555;
 				document.getElementById('Wow,-you-are-digging-through-the-code.').innerHTML = AI;
