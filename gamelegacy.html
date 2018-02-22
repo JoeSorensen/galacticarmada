@@ -323,10 +323,10 @@
 		 //Time for calculations
 		 //Although this is due at the end of the month essentially, I plan to add more advanced moves, like feinting and offensive and defensive. Right now, it'll just teleport. *thumbs up*
 		 delay=difficulty
-		 AICalcx+=(SSx-ESSx)/delay;
-		 AICalcy+=(SSy-ESSy)/delay;
-		 ESSx=AICalcx;
-		 ESSy=AICalcy;
+		 AICalcx=(SSx-ESSx)/delay;
+		 AICalcy=(SSy-ESSy)/delay;
+		 ESSx+=AICalcx;
+		 ESSy+=AICalcy;
 		 //Let's hope this works!
 	 }
 
