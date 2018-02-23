@@ -96,6 +96,11 @@
 			increase = 0.001;
 			time = 0
 		}
+		
+		function precisionRound(number, precision) {
+  			var factor = Math.pow(10, precision);
+  			return Math.round(number * factor) / factor;
+		}
 
     function draw(){
       background('black');
@@ -300,7 +305,7 @@
 			if (difficulty != 0 && time < 10){
 				EnemyAI();
 				difficulty -= increase;
-				difficulty == Math.round(difficulty)
+				difficulty == precisionRound(difficulty, -1);
 				increase += 0.00000555555555;
 				document.getElementById('Wow,-you-are-digging-through-the-code.').innerHTML = AI;
 				document.getElementById('Is-it-impossible-to-keep-secrets-nowadays').innerHTML = difficulty;
