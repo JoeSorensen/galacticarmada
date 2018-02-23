@@ -305,7 +305,7 @@
 			if (difficulty != 0 && time < 10){
 				EnemyAI();
 				difficulty -= increase;
-				difficulty == precisionRound(difficulty, -1);
+				difficulty = precisionRound(difficulty, -1);
 				increase += 0.00000555555555;
 				document.getElementById('Wow,-you-are-digging-through-the-code.').innerHTML = AI;
 				document.getElementById('Is-it-impossible-to-keep-secrets-nowadays').innerHTML = difficulty;
