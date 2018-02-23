@@ -7,7 +7,7 @@
 <head>
 <link rel="icon" href="graphics/main/logo.png">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.js"></script>
-<script src="https://raw.githubusercontent.com/bmoren/p5.collide2D/master/p5.collide2d.min.js"></script>	
+<script src="https://gist.githubusercontent.com/rochoa/5b57e57c9694741c4887/raw/d00d23c772c1bacc89c0d18185eeb94ba1b9f63c/almost-equal.js"></script>	
 <meta charset="UTF-8">
 <title>Galactic Armada by Joseph Sorensen</title>
 </head>
@@ -300,6 +300,7 @@
 			if (difficulty != 0 && time < 10){
 				EnemyAI();
 				difficulty -= increase;
+				Math.round(difficulty)
 				increase += 0.00000555555555;
 				document.getElementById('Wow,-you-are-digging-through-the-code.').innerHTML = AI;
 				document.getElementById('Is-it-impossible-to-keep-secrets-nowadays').innerHTML = difficulty;
